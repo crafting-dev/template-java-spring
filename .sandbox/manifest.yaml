@@ -1,0 +1,4 @@
+daemons:
+  app:
+    run:
+      cmd: 'cd spring-boot && ./mvnw spring-boot:run'
