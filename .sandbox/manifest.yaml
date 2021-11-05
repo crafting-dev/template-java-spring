@@ -1,5 +1,5 @@
 daemons:
   app:
     run:
-      cmd: './mvnw spring-boot:run'
-      dir: spring-boot
+      cmd: ./mvnw spring-boot:run
+      dir: ping
