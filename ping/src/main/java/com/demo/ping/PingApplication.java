@@ -2,6 +2,7 @@ package com.demo.ping;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +17,7 @@ public class PingApplication {
 		SpringApplication.run(PingApplication.class, args);
 	}
 
+	@CrossOrigin
 	@GetMapping("/ping")
 	public String ping(@RequestParam(defaultValue = "To ping, or not to ping; that is the question.") String ping) {
 		JSONObject pong = new JSONObject();
