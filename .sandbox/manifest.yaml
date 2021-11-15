@@ -1,5 +1,5 @@
 daemons:
   app:
     run:
-      cmd: ./mvnw spring-boot:run
+      cmd: ./gradlew bootRun
       dir: ping
