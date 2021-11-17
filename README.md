@@ -23,7 +23,7 @@ $ curl --request GET 'localhost:3000/ping?ping=hello'
 {"ping":"hello","received_at":"XXXX-XX-XXXXX:XX:XX.XXXXXXX"}
 ```
 
-Template is configured with MySQL, with driver dependency defined in [`pom.xml`](ping/pom.xml), and connection configuration in [`application.properties`](ping/src/main/resources/application.properties):
+Template is configured with MySQL, with driver dependency defined in [`build.gradle`](ping/build.gradle), and connection configuration in [`application.properties`](ping/src/main/resources/application.properties):
 ```java
 spring.jpa.hibernate.ddl-auto=update
 spring.datasource.url=jdbc:mysql://${MYSQL_SERVICE_HOST:mysql}:${MYSQL_SERVICE_PORT:3306}/superhero
@@ -38,7 +38,7 @@ Server port is set to `3000`, which is the same as the port defined in App confi
 
 To run the app:
 ```bash
-cd ping && ./mvnw spring-boot:run
+cd ping && ./gradlew bootRun
 ```
 
 ## App configuration
@@ -55,7 +55,7 @@ endpoints:
     path_prefix: /
 name: app
 services:
-- description: Java/Spring template
+- description: A Java/Spring template
 name: java-spring
 workspace:
   checkouts:
@@ -65,8 +65,6 @@ workspace:
   packages:
   - name: openjdk
     version: ~14
-  - name: maven
-    version: ~3
   ports:
   - name: http
     port: 3000
