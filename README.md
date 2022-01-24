@@ -1,6 +1,6 @@
 # Java/Spring with MySQL template for Crafting Sandbox
 
-This is a Java/[Spring](https://spring.io/) with MySQL template, configured for quick development setup in [Crafting Sandbox](https://crafting.readme.io/docs).
+This is a Java/[Spring](https://spring.io/) with MySQL template, configured for quick development setup in [Crafting Sandbox](https://docs.sandboxes.cloud/docs).
 
 ## Specifications
 
@@ -41,40 +41,41 @@ To run the app:
 cd ping && ./gradlew bootRun
 ```
 
-## App configuration
+## App Definition
 
-The following [App configuration](https://crafting.readme.io/docs/app-spec) was used to create this template:
+The following [App Definition](https://docs.sandboxes.cloud/docs/app-definition) was used to create this template:
 
 ```yaml
 endpoints:
-- http:
-  routes:
-  - backend:
-      port: http
-      target: java-spring
-    path_prefix: /
-name: app
-services:
-- description: A Java/Spring template
-name: java-spring
-workspace:
-  checkouts:
-  - path: src/template-java-spring
-    repo:
-      git: https://github.com/crafting-dev/template-java-spring.git
-  packages:
-  - name: openjdk
-    version: ~14
+- name: api
+  http:
+    routes:
+    - pathPrefix: "/"
+      backend:
+        target: java-spring
+        port: api
+    authProxy:
+      disabled: true
+workspaces:
+- name: java-spring
+  description: Template backend using Java/Spring
   ports:
-  - name: http
+  - name: api
     port: 3000
     protocol: HTTP/TCP
-- managed_service:
+  checkouts:
+  - path: backend
+    repo:
+      git: https://github.com/crafting-dev/template-java-spring
+  packages:
+  - name: openjdk
+    version: 14.0.2
+dependencies:
+- name: mysql
+  serviceType: mysql
+  version: '8'
   properties:
     database: superhero
     password: batman
     username: brucewayne
-  service_type: mysql
-  version: "8"
-name: mysql
 ```
